@@ -1,3 +1,6 @@
+# FPM Makefile - Fixed Program Module Makefile
+# Authors: MCMi460
+
 ROM_CODE := IRBO# IRAO, ...
 PROJECT  := FPM
 
@@ -23,7 +26,6 @@ lnks = $(link_dir)/hooks.ld
 hdrs = $(wildcard $(incl_dir)/*.h) $(wildcard $(incl_dir)/overlay/*.h)
 esdb = $(pmc_dir)/$(ROM_CODE).yml
 y9   = $(data_dir)/y9.json
-y9dt = $(build_data)/y9.json
 
 fsrcs = $(wildcard $(fpm_dir)/*.c) $(wildcard $(fpm_dir)/*.cpp)
 fobjs = $(addprefix $(code_dir)/, $(notdir $(patsubst %.cpp, %.o, $(patsubst %.c, %.o, $(fsrcs)))))
@@ -39,15 +41,24 @@ nitro_project = $(unpack_dir)/$(ROM_CODE).json
 fpm_bin       = $(unpack_dir)/overlay/main_00ED.bin
 fpm_size      = 0
 
+# Commands
 gcc     = arm-none-eabi-gcc
 ld      = arm-none-eabi-ld
 as      = arm-none-eabi-as
 objcopy = arm-none-eabi-objcopy
 objdump = arm-none-eabi-objdump
-python  = python3
-vpython = $(venv_dir)/bin/$(python)
 ntrpck  = nitropacker
 
+# OS-specific commands
+ifeq ($(OS),Windows_NT)
+	python  = python
+	vpython = $(venv_dir)/Scripts/$(python)
+else
+	python  = python3
+	vpython = $(venv_dir)/bin/$(python)
+endif
+
+# Tools
 y9_tool   := $(tools_dir)/y9.py
 nitro_y9  := $(tools_dir)/nitro_y9.py
 esdb_tool := $(tools_dir)/esdb.py
@@ -56,9 +67,14 @@ hookfilt  := $(tools_dir)/hook_filter.py
 venv_dir = $(build_dir)/venv
 pyreqs   = $(tools_dir)/requirements.txt
 
-c_flags  := -mthumb -march=armv5t -nostdlib -ffunction-sections -O2 $(addprefix -I, $(dir $(hdrs))) -Wa,-W
+c_flags  := -mthumb -march=armv5t -nostdlib -ffunction-sections -fno-exceptions -O2 $(addprefix -I, $(dir $(hdrs))) -Wa,-W
 ld_flags := --no-warn-rwx-segments
 as_flags := 
+
+defines ?=
+ifneq ($(defines),)
+	c_flags += $(addprefix -D,$(defines))
+endif
 
 vpath %.c   $(vfs_dir)
 vpath %.c   $(ovl_dir)
@@ -86,12 +102,10 @@ $(venv_dir):
 	@ echo "[^] Installing requirements..."
 	@ $(vpython) -m pip install -r $(pyreqs) > /dev/null
 
-$(y9dt): $(felf)
+merge_y9s: $(felf)
 	@ echo "[%] Merging y9s..."
 	@ mkdir -p $(dir $@)
-	@ $(eval fpm_size := $(shell stat -f %z $(fpm_bin)))
-	@ sed 's/%d/'"$(fpm_size)"'/g' $(y9) > $@
-	@ $(vpython) $(nitro_y9) $(nitro_project) $@
+	@ $(eval fpm_size := $(shell $(vpython) $(nitro_y9) $(fpm_bin) $(nitro_project) $(y9)))
 
 .PRECIOUS: $(lnks)
 $(link_dir)/hooks.ld: $(hdrs) $(venv_dir)
@@ -127,7 +141,7 @@ $(obj_dir)/%.elf: $(obj_dir)/%.o $(lnks) $(obj_dir)/symbols.o $(fsym)
 		offs10=$$(printf "%d" "$$offs"); \
 		offs10even=$$(( offs10 & -2 )); \
 		$(objcopy) -O binary --only-section=.text.$$hook $@ $(@:.elf=.bin); \
-		length=$$(stat -f %z $(@:.elf=.bin)); \
+		length=$$(wc -c < $(@:.elf=.bin) | tr -d ' '); \
 		binfile=$(notdir $(@:.elf=.bin)); \
 		case $$(basename "$@") in \
 			fpm*) location="$(unpack_dir)/arm9.bin";; \
@@ -137,7 +151,7 @@ $(obj_dir)/%.elf: $(obj_dir)/%.o $(lnks) $(obj_dir)/symbols.o $(fsym)
 		dd if=$(@:.elf=.bin) of=$$location bs=1 seek=$$offs10even conv=notrunc status=none; \
 	done
 
-$(obj_dir)/%.o: %.c $(hdrs) $(y9dt)
+$(obj_dir)/%.o: %.c $(hdrs) merge_y9s
 	@ echo "[+] Compiling hook $<..."
 	@ mkdir -p $(@D)
 	@ $(gcc) $(c_flags) -DMODULE_SIZE=$(fpm_size) -c $< -o $@
@@ -169,7 +183,7 @@ $(code_dir)/%.o: %.cpp $(hdrs)
 	@ $(gcc) $(c_flags) -c $< -o $@
 
 clean:
-	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(target) $(build_data)
+	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(build_dir)/*.nds $(build_data)
 
 purge:
 	rm -rf $(build_dir)

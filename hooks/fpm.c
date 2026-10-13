@@ -1,5 +1,5 @@
 // fpm.c - fixed program module
-// Authors: MCMi460
+// Authors: MCMi460, HelloOO7, PlatinumMaster
 
 #include "util.h"
 
@@ -28,8 +28,12 @@ void FULL_COPY_main_0x6(void) {
 __attribute__((naked, target("thumb"), aligned(2)))
 void FULL_COPY_GetUserMemRegionDefaultStart_0xB0(void) {
     __asm__ volatile (
-        // 0x2213D20 + MODULE_SIZE = NEW_HEAP_START
-        ".word " STR(0x2213D20 + MODULE_SIZE)
+        // IRAO: 0x2213D40
+        // IRBO: 0x2213D20
+        // IRAI: 0x2213C40
+        // Take the greatest, IRAO, for multiregional support
+        // 0x2213D40 + MODULE_SIZE = NEW_HEAP_START
+        ".word " STR(0x2213D40 + MODULE_SIZE)
     );
 }
 

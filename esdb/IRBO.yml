@@ -2,6 +2,9 @@ Segments:
   - ID: 0x0
     Name: ARM9
     Type: EXECUTABLE
+  - ID: 0x1
+    Name: 10
+    Type: OVERLAY
 
 Symbols:
   - Name: bwInjectBootCode
@@ -13,15 +16,108 @@ Symbols:
   - Name: GFLAppInit
     Segment: 0x0
     Address: 0x200545D
-  - Name: sys_load_overlay
+  - Name: VM_Run
     Segment: 0x0
-    Address: 0x2079264
+    Address: 0x2011299
+  - Name: VM_SetCallbackVerifier
+    Segment: 0x0
+    Address: 0x2011329
+  - Name: VM_Read16
+    Segment: 0x0
+    Address: 0x2011331
+  - Name: PML_PersonalGetParamSingle
+    Segment: 0x0
+    Address: 0x2019C91
+  - Name: GFL_WordSetLoadMsg
+    Segment: 0x0
+    Address: 0x201EDD1
+  - Name: GFL_HeapAllocate
+    Segment: 0x0
+    Address: 0x2030734
+  - Name: GFL_HeapFree
+    Segment: 0x0
+    Address: 0x20307B0
+  - Name: GFL_ArcSysReadHeapNewLZ
+    Segment: 0x0
+    Address: 0x204A1BC
+  - Name: finit
+    Segment: 0x0
+    Address: 0x20788AC
+  - Name: romfs_fclose
+    Segment: 0x0
+    Address: 0x2078A80
+  - Name: romfs_fgetsize
+    Segment: 0x0
+    Address: 0x2078A94
+  - Name: romfs_fseek
+    Segment: 0x0
+    Address: 0x2078B44
+  - Name: romfs_fread
+    Segment: 0x0
+    Address: 0x2078B70
+  - Name: romfs_fopen
+    Segment: 0x0
+    Address: 0x2078C18
   - Name: g_OvlMax
     Segment: 0x0
     Address: 0x2078EA8
+  - Name: sys_load_overlay
+    Segment: 0x0
+    Address: 0x2079264
   - Name: GetUserMemRegionDefaultStart
     Segment: 0x0
     Address: 0x2086694
   - Name: vsnprintf
     Segment: 0x0
     Address: 0x20944CC
+  - Name: __aeabi_idivmod
+    Segment: 0x0
+    Address: 0x209C0A4
+  - Name: __aeabi_uidivmod
+    Segment: 0x0
+    Address: 0x209C2B0
+  - Name: __aeabi_uidivmod_impl
+    Segment: 0x0
+    Address: 0x209C2B8
+  - Name: FieldScript_CreateVM
+    Segment: 0x1
+    Address: 0x2158BFD
+  - Name: FieldScript_ResolveSCRID
+    Segment: 0x1
+    Address: 0x2158CD1
+  - Name: FieldScript_LoadData
+    Segment: 0x1
+    Address: 0x2158D79
+  - Name: FieldScript_CheckSCRID
+    Segment: 0x1
+    Address: 0x2158D91
+  - Name: FieldScript_OpcodeGuard
+    Segment: 0x1
+    Address: 0x2158DE9
+  - Name: FieldScript_AttachOpcodeGuard
+    Segment: 0x1
+    Address: 0x2158E39
+  - Name: ScriptWork_GetGameSystem
+    Segment: 0x1
+    Address: 0x2158F55
+  - Name: ScriptWork_GetWordSet
+    Segment: 0x1
+    Address: 0x2158F75
+  - Name: ScriptReadVar
+    Segment: 0x1
+    Address: 0x2159AE9
+  - Name: ScriptReadAny
+    Segment: 0x1
+    Address: 0x2159B11
+  - Name: FieldScriptEnv_GetScriptWork
+    Segment: 0x1
+    Address: 0x215A5F5
+  - Name: GLOBAL_SCRIPT_TABLE
+    Segment: 0x1
+    Address: 0x21701A8
+  - Name: EVCMD_MAX
+    Segment: 0x1
+    Address: 0x21705D8
+  - Name: EVCMD_TABLE
+    Segment: 0x1
+    Address: 0x217062C

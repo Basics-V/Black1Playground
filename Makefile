@@ -2,7 +2,7 @@
 # Authors: MCMi460
 
 ROM_CODE := IRBO# IRAO, ...
-PROJECT  := FPM
+PROJECT  := Black1Playground
 
 vfs_dir     := hooks
 ovl_dir     := $(vfs_dir)/overlay
@@ -81,7 +81,8 @@ vpath %.c   $(ovl_dir)
 vpath %.c   $(fpm_dir)
 vpath %.cpp $(fpm_dir)
 
-all: clean unpack $(target) repack clean_pack
+all: clean unpack $(target) data repack clean_pack
+include $(data_dir)/Makefile.mk
 
 unpack:
 	@ echo "[<] Unpacking $(source)..."
@@ -183,7 +184,7 @@ $(code_dir)/%.o: %.cpp $(hdrs)
 	@ $(gcc) $(c_flags) -c $< -o $@
 
 clean:
-	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(build_dir)/*.nds $(build_data)
+	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(build_dir)/*.nds $(build_data) $(build_dir)/*.log $(build_dir)/*.out
 
 purge:
 	rm -rf $(build_dir)

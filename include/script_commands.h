@@ -9,13 +9,13 @@
 C_DECL_BEGIN
 
 ScriptFunc PokePersonalGetAbility;
-ScriptFunc WordSetLoadAbility;
+ScriptFunc WordSetAbility;
 
 C_DECL_END
 
 // Command set list
 static ScriptCall ExtendedCommandSet[] = {
     PokePersonalGetAbility, // 0x261
-    WordSetLoadAbility,     // 0x262
+    WordSetAbility,         // 0x262
 };
 

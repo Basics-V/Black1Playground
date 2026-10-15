@@ -19,8 +19,8 @@ public class Globals {
 	}
 
 	// 10526
-	public static void abilityWordLoader(int strBufIdx, int abil) { // Warning: does not work
-		WordSetExt.LoadAbility(strBufIdx, abil);
+	public static void abilityWordLoader(int strbufIdx, int abil) { // Warning: does not work
+		WordSetExt.LoadAbility(strbufIdx, abil);
 	}
 
 	// 10527

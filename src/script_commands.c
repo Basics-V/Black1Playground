@@ -14,7 +14,7 @@
 
     Headers:
     PKS: pokemon.PokePersonal.GetAbility
-    ...
+    BTR: PokePersonalGetAbility
 */
 int PokePersonalGetAbility(ScriptVM* vm, FieldScriptEnv* env) {
     u16* abil      = ScriptReadVar(vm, env);
@@ -35,9 +35,9 @@ int PokePersonalGetAbility(ScriptVM* vm, FieldScriptEnv* env) {
 
     Headers:
     PKS: system.text.WordSetExt.LoadAbility
-    ...
+    BTR: WordSetAbility
 */
-int WordSetLoadAbility(ScriptVM* vm, FieldScriptEnv* env) {
+int WordSetAbility(ScriptVM* vm, FieldScriptEnv* env) {
     ScriptWork* work = FieldScriptEnv_GetScriptWork(env);
     WordSet* wordSet = ScriptWork_GetWordSet(work);
 

@@ -45,3 +45,20 @@ void FULL_COPY_FieldScript_AttachOpcodeGuard_0x18(void) {
         ".word " STR(ScriptPlugin_ExtendOpcodeGuard)
     );
 }
+
+// Hook the bag's return function to inject our custom return action
+__attribute__((naked, target("thumb"), aligned(2)))
+void FULL_COPY_FIELD_PROC_LINK_LIST_0x28(void) {
+    __asm__ volatile (
+        ".word " STR(FldActExt_BagReturnAction)
+    );
+}
+
+// Wrapper CallFieldCommonEventFunc to substitute our custom items' functions
+__attribute__((naked, target("thumb"), aligned(2)))
+void FULL_COPY_CallFieldCommonEventFunc(void) {
+    __asm__ volatile (
+        "LDR R3, =FldActExt_CallEventFunc\n\t"
+        "BX R3\n\t"
+    );
+}

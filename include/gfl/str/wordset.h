@@ -6,6 +6,6 @@ STRUCT_DECLARE(WordSet)
 
 C_DECL_BEGIN
 
-void GFL_WordSetLoadMsg(WordSet*, u8, u32, u16);
+extern void GFL_WordSetLoadMsg(WordSet*, u8, u32, u16);
 
 C_DECL_END

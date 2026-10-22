@@ -24,8 +24,8 @@ struct ScriptVM {
 // VM functions
 C_DECL_BEGIN
 
-void VM_SetCallbackVerifier(ScriptVM*, VMCallbackVerifier, void*);
-void VM_SetNativeCallback(ScriptVM*, VMNativeCallback);
-u16 VM_Read16(ScriptVM*);
+extern void VM_SetCallbackVerifier(ScriptVM*, VMCallbackVerifier, void*);
+extern void VM_SetNativeCallback(ScriptVM*, VMNativeCallback);
+extern u16 VM_Read16(ScriptVM*);
 
 C_DECL_END

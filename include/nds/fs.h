@@ -1,4 +1,4 @@
-// Sourced from ds-pokemon-hacking/swan/swantypes.h
+// Sourced from ds-pokemon-hacking/swan
 #pragma once
 #include "wbtypes.h"
 

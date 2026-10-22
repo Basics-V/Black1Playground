@@ -1,4 +1,4 @@
-// Sourced from ds-pokemon-hacking/swan/swantypes.h
+// Sourced from ds-pokemon-hacking/swan
 #include "wbtypes.h"
 
 #include "nds/fs.h"

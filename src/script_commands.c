@@ -1,6 +1,8 @@
 // script_commands.c
 // Authors: MCMi460
 
+#include "wbtypes.h"
+
 #include "field/field_script.h"
 #include "script_commands.h"
 

@@ -5,6 +5,9 @@ Segments:
   - ID: 0x1
     Name: 10
     Type: OVERLAY
+  - ID: 0x2
+    Name: 70
+    Type: OVERLAY
 
 Symbols:
   - Name: bwInjectBootCode
@@ -16,6 +19,9 @@ Symbols:
   - Name: GFLAppInit
     Segment: 0x0
     Address: 0x200545D
+  - Name: GFL_SndSEPlay
+    Segment: 0x0
+    Address: 0x20061E5
   - Name: VM_Run
     Segment: 0x0
     Address: 0x2011299
@@ -25,18 +31,48 @@ Symbols:
   - Name: VM_Read16
     Segment: 0x0
     Address: 0x2011331
+  - Name: GameEvent_Create
+    Segment: 0x0
+    Address: 0x20122C1
+  - Name: GameEvent_RunCallback
+    Segment: 0x0
+    Address: 0x2012305
+  - Name: GameEvent_ChainNext
+    Segment: 0x0
+    Address: 0x2012375
+  - Name: GameEvent_GetGameSystem
+    Segment: 0x0
+    Address: 0x20124E5
+  - Name: GameEvent_GetData
+    Segment: 0x0
+    Address: 0x20124E9
   - Name: PML_PersonalGetParamSingle
     Segment: 0x0
     Address: 0x2019C91
   - Name: GFL_WordSetLoadMsg
     Segment: 0x0
     Address: 0x201EDD1
+  - Name: copyVarForText
+    Segment: 0x0
+    Address: 0x201F02D
+  - Name: GFL_WordSetFormatStrbuf
+    Segment: 0x0
+    Address: 0x201F251
+  - Name: PML_ItemGetParam
+    Segment: 0x0
+    Address: 0x2021015
   - Name: GFL_HeapAllocate
     Segment: 0x0
     Address: 0x2030734
   - Name: GFL_HeapFree
     Segment: 0x0
     Address: 0x20307B0
+  - Name: GFL_BGSysClearScr
+    Segment: 0x0
+    Address: 0x20414EC
+  - Name: GFL_MsgDataLoadStrbuf
+    Segment: 0x0
+    Address: 0x2045CAC
   - Name: GFL_ArcSysReadHeapNewLZ
     Segment: 0x0
     Address: 0x204A1BC
@@ -64,6 +100,9 @@ Symbols:
   - Name: sys_load_overlay
     Segment: 0x0
     Address: 0x2079264
+  - Name: sys_memset
+    Segment: 0x0
+    Address: 0x2082BCC
   - Name: GetUserMemRegionDefaultStart
     Segment: 0x0
     Address: 0x2086694
@@ -79,6 +118,12 @@ Symbols:
   - Name: __aeabi_uidivmod_impl
     Segment: 0x0
     Address: 0x209C2B8
+  - Name: g_GameSystem
+    Segment: 0x0
+    Address: 0x2146248
+  - Name: EventScriptCall_Start
+    Segment: 0x1
+    Address: 0x2158781
   - Name: FieldScript_CreateVM
     Segment: 0x1
     Address: 0x2158BFD
@@ -112,6 +157,12 @@ Symbols:
   - Name: FieldScriptEnv_GetScriptWork
     Segment: 0x1
     Address: 0x215A5F5
+  - Name: EventFieldBag_HandleReturnAction
+    Segment: 0x1
+    Address: 0x2161071
+  - Name: CallFieldCommonEventFunc
+    Segment: 0x1
+    Address: 0x21644F5
   - Name: GLOBAL_SCRIPT_TABLE
     Segment: 0x1
     Address: 0x21701A8
@@ -121,3 +172,45 @@ Symbols:
   - Name: EVCMD_TABLE
     Segment: 0x1
     Address: 0x217062C
+  - Name: FIELD_PROC_LINK_LIST
+    Segment: 0x1
+    Address: 0x21712E0
+  - Name: FIELD_COMMON_EVENTS
+    Segment: 0x1
+    Address: 0x2171504
+  - Name: Bag_UpdateStateMachine
+    Segment: 0x2
+    Address: 0x21B6101
+  - Name: Bag_DrawWindow
+    Segment: 0x2
+    Address: 0x21B6121
+  - Name: Bag_LoadItemName
+    Segment: 0x2
+    Address: 0x21B61F5
+  - Name: Bag_IsItemRepel
+    Segment: 0x2
+    Address: 0x21B68E9
+  - Name: Bag_CanUse
+    Segment: 0x2
+    Address: 0x21B690D
+  - Name: Bag_RepelEffect
+    Segment: 0x2
+    Address: 0x21B6935
+  - Name: Bag_WaitDialogue
+    Segment: 0x2
+    Address: 0x21B6A15
+  - Name: Bag_SubItem
+    Segment: 0x2
+    Address: 0x21B7D21
+  - Name: Bag_GetUseButtonType
+    Segment: 0x2
+    Address: 0x21B822D
+  - Name: Bag_SetItemWindowState
+    Segment: 0x2
+    Address: 0x21B8AF5
+  - Name: Bag_CreateTextBox
+    Segment: 0x2
+    Address: 0x21BACF1
+  - Name: Bag_SetMenuBrightness
+    Segment: 0x2
+    Address: 0x21BB3F5

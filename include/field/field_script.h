@@ -4,8 +4,12 @@
 
 #include "system/vm.h"
 #include "system/gamesystem.h"
+#include "system/game_event.h"
 
+#include "gfl/core/gfl_heap.h"
 #include "gfl/str/wordset.h"
+
+#include "field/field_mmodel.h"
 
 // Defs
 #define FLDSCRCMD_SIZE 0x261
@@ -42,14 +46,16 @@ extern ScriptCall EVCMD_TABLE;
 // Script functions
 C_DECL_BEGIN
 
-u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);
-b32 FieldScript_OpcodeGuard(ScriptVM*, FieldScriptEnv*, GameSystem*, u16);
+extern u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);
+extern b32 FieldScript_OpcodeGuard(ScriptVM*, FieldScriptEnv*, GameSystem*, u16);
 
-GameSystem* ScriptWork_GetGameSystem(ScriptWork*);
-ScriptWork* FieldScriptEnv_GetScriptWork(FieldScriptEnv*);
-u16* ScriptReadVar(ScriptVM*, FieldScriptEnv*);
-u16 ScriptReadAny(ScriptVM*, FieldScriptEnv*);
+extern GameSystem* ScriptWork_GetGameSystem(ScriptWork*);
+extern ScriptWork* FieldScriptEnv_GetScriptWork(FieldScriptEnv*);
+extern u16* ScriptReadVar(ScriptVM*, FieldScriptEnv*);
+extern u16 ScriptReadAny(ScriptVM*, FieldScriptEnv*);
 
-WordSet* ScriptWork_GetWordSet(ScriptWork*);
+extern WordSet* ScriptWork_GetWordSet(ScriptWork*);
+
+extern ScriptVM* EventScriptCall_Start(GameEvent*, u16, FieldActor*, void*, HeapID);
 
 C_DECL_END

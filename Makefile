@@ -184,7 +184,7 @@ $(code_dir)/%.o: %.cpp $(hdrs)
 	@ $(gcc) $(c_flags) -c $< -o $@
 
 clean:
-	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(build_dir)/*.nds $(build_data) $(build_dir)/*.log $(build_dir)/*.out
+	@ rm -rf $(obj_dir) $(code_dir) $(link_dir) $(unpack_dir) $(build_dir)/*.nds $(build_data) $(build_dir)/logs
 
 purge:
 	rm -rf $(build_dir)

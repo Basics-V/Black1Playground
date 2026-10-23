@@ -50,9 +50,11 @@ extern u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);
 extern b32 FieldScript_OpcodeGuard(ScriptVM*, FieldScriptEnv*, GameSystem*, u16);
 
 extern GameSystem* ScriptWork_GetGameSystem(ScriptWork*);
-extern ScriptWork* FieldScriptEnv_GetScriptWork(FieldScriptEnv*);
 extern u16* ScriptReadVar(ScriptVM*, FieldScriptEnv*);
 extern u16 ScriptReadAny(ScriptVM*, FieldScriptEnv*);
+
+extern ScriptWork* FieldScriptEnv_GetScriptWork(FieldScriptEnv*);
+extern GameSystem* FieldScriptEnv_GetGameSystem(FieldScriptEnv*);
 
 extern WordSet* ScriptWork_GetWordSet(ScriptWork*);
 

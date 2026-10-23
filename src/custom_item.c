@@ -65,7 +65,7 @@ void PokeRadarUse(Bag* bag) {
 
 GameEvent* PokeRadarActivate(Field* field, GameSystem* gameSys) {
     // Setup Phenomenon Poké Radar Event
-    GameEvent* event = GameEvent_Create(gameSys, NULL, PokeRadarCallback, sizeof(PokeRadarEvent));
+    GameEvent* event = GameEvent_Create(gameSys, NULL, PokeRadar_Callback, sizeof(PokeRadarEvent));
     PokeRadarEvent* eventData = (PokeRadarEvent*)GameEvent_GetData(event);
     sys_memset(eventData, 0, sizeof(PokeRadarEvent));
     eventData->field = field;

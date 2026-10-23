@@ -3,25 +3,7 @@
 
 import sys
 import re
-
-def strip_comments(string):
-    line = False
-    block = False
-    ret = ""
-    for idx, char in enumerate(string):
-        if len(string) > idx + 1:
-            match string[idx:idx+2]:
-                case "//":
-                    line = True
-                case "/*":
-                    block = True
-                case "*/":
-                    block = False
-        if char == "\n":
-            line = False
-        if not line and not block:
-            ret += char
-    return ret.replace("*/", "")
+from util import strip_comments
 
 def fetch_prefixed(string:str) -> list[str]:
     pattern = r"FULL_COPY_[A-Za-z0-9_]+(_0x[0-9a-fA-F]+)?"

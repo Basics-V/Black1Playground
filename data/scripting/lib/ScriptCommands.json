@@ -14,5 +14,11 @@
             2,
             2
         ]
+    },
+    "0x263": {
+        "name": "BGMFadeOut",
+        "parameters": [
+            2
+        ]
     }
 }

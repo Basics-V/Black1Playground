@@ -7,18 +7,25 @@
 
 #include "field/fieldmap.h"
 
+// Script IDs
+#define POKERADAR_useFailed  10526
+#define POKERADAR_spawnFail  10527
+#define POKERADAR_useSuccess 10528
+
+// Eventworks
+#define POKERADAR_event 0x4010
+
 // Data structure decls
 STRUCT_DECLARE(PokeRadarEvent)
 
 // Data structure defs
 struct PokeRadarEvent {
     Field* field;
-    u8 flags;
 };
 
 // Prototypes
 C_DECL_BEGIN
 
-extern GameEventReturnCode PokeRadarCallback(GameEvent*, u32*, void*);
+extern GameEventReturnCode PokeRadar_Callback(GameEvent*, u32*, void*);
 
 C_DECL_END

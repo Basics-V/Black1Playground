@@ -8,6 +8,7 @@
 
 #include "gfl/str/wordset.h"
 #include "pml/poke_personal.h"
+#include "field/field_sound_system.h"
 
 #include "util.h"
 
@@ -48,6 +49,27 @@ int WordSetAbility(ScriptVM* vm, FieldScriptEnv* env) {
 
     // Load the ability name to the string buffer
     GFL_WordSetLoadMsg(wordSet, strbufIdx, WORDSET_ABILITIES, abil);
+
+    return 0;
+}
+
+/*
+    Fades the area's BGM.
+
+    Headers:
+    PKS: system.SoundExt.BGMFadeOut
+    BTR: WordSetAbility
+*/
+int BGMFadeOut(ScriptVM* vm, FieldScriptEnv* env) {
+    GameSystem* gameSys = FieldScriptEnv_GetGameSystem(env);
+    ScriptWork* work = FieldScriptEnv_GetScriptWork(env);
+    GameData* gameData = GSYS_GetGameData(gameSys);
+    FieldSoundSystem* fldSndSys = GameData_GetFieldSoundSystem(gameData);
+
+    u16 interval = ScriptReadAny(vm, env);
+
+    FieldSnd_SendRequest(fldSndSys, 2, 0, interval, 0);
+    FieldSnd_SendRequest(fldSndSys, 7, 0x3E9, 0, 0);
 
     return 0;
 }

@@ -1,0 +1,1 @@
+[VAR PKNAME(0)], #[VAR NUM3(1)] ability:\n[VAR ABILITY(2)]!

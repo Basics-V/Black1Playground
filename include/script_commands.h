@@ -10,6 +10,7 @@ C_DECL_BEGIN
 
 ScriptFunc PokePersonalGetAbility;
 ScriptFunc WordSetAbility;
+ScriptFunc BGMFadeOut;
 
 C_DECL_END
 
@@ -17,5 +18,5 @@ C_DECL_END
 static ScriptCall ExtendedCommandSet[] = {
     PokePersonalGetAbility, // 0x261
     WordSetAbility,         // 0x262
+    BGMFadeOut,             // 0x263
 };
-

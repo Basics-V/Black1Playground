@@ -62,3 +62,11 @@ void FULL_COPY_CallFieldCommonEventFunc(void) {
         "BX R3\n\t"
     );
 }
+
+// Force random events to go through our code
+__attribute__((naked, target("thumb"), aligned(2)))
+void FULL_COPY_EventWildBattleCall_CreateCore_0x10(void) {
+    __asm__ volatile (
+        "BL PokeRadar_HookWildBattle_RestartBGM\n\t"
+    );
+}

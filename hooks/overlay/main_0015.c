@@ -20,3 +20,11 @@ void FULL_COPY_CreateRandomPhenomenonEvent_0xc6(void) {
         "BL EncountSystem_CancelPhenomenon\n\t"
     );
 }
+
+// Force Poké Radar Phenomenons to be encounters
+__attribute__((naked, target("thumb"), aligned(2)))
+void FULL_COPY_CreateRandomPhenomenonEvent_0x68(void) {
+    __asm__ volatile (
+        "BL PokeRadar_HookPhenomenonInteract\n\t"
+    );
+}

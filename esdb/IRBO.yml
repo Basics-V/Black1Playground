@@ -22,6 +22,9 @@ Symbols:
   - Name: GFLAppInit
     Segment: 0x0
     Address: 0x200545D
+  - Name: GFL_RandomLCAlt
+    Segment: 0x0
+    Address: 0x2005729
   - Name: GFL_SndSEPlay
     Segment: 0x0
     Address: 0x20061E5

@@ -5,6 +5,8 @@
 
 #include "data/heapid_def.h"
 
+#include "gfl/core/gfl_random.h"
+
 #include "field/field_encount.h"
 #include "field/field_script.h"
 #include "field/event/event_bgm.h"
@@ -63,6 +65,13 @@ GameEventReturnCode PokeRadar_Callback(GameEvent* event, u32* state, void* event
             return GAMEEVENT_DONE;
     }
     return GAMEEVENT_CONTINUE;
+}
+
+// Only encounter Pokémon when interacting with the phenomenon
+u32 PokeRadar_HookPhenomenonInteract(u32 max) {
+    if (*EventWork_GetWkPtr(GameData_GetEventData(GSYS_GetGameData(g_GameSystem)), POKERADAR_event) == 1)
+        return 0;
+    return GFL_RandomLCAlt(max);
 }
 
 // Restores the field's BGM when a Pokémon is encountered, if the BGM has been overridden
